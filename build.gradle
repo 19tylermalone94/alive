@@ -1,0 +1,31 @@
+plugins {
+    id 'application'
+    id 'org.lwjgl.plugin' version '0.0.35'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.lwjgl:lwjgl:3.3.6"
+    implementation "org.lwjgl:lwjgl-opengl:3.3.6"
+    implementation "org.lwjgl:lwjgl-glfw:3.3.6"
+    implementation "org.lwjgl:lwjgl-stb:3.3.6"
+
+    // Include native dependencies (adjust for your OS)
+    runtimeOnly "org.lwjgl:lwjgl:3.3.6:natives-linux"
+    runtimeOnly "org.lwjgl:lwjgl-opengl:3.3.6:natives-linux"
+    runtimeOnly "org.lwjgl:lwjgl-glfw:3.3.6:natives-linux"
+    runtimeOnly "org.lwjgl:lwjgl-stb:3.3.6:natives-linux"
+}
+
+application {
+    mainClass = 'com.alive.App'
+}
+
+
+tasks.named("run") {
+    environment("XDG_SESSION_TYPE", "x11")
+    environment("SDL_VIDEODRIVER", "x11")
+}
